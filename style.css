@@ -1,0 +1,13 @@
+h1{
+color:red;
+font-family: cursive;
+}
+body{
+    background-image: url(file:///C:/Users/pym12/OneDrive/Pictures/Screenshots/Screenshot%202026-07-01%20164953.png);
+}
+a:hover{
+    color:rgb(19, 255, 19)
+}
+a:visited{
+    color: rgb(155, 255, 255);
+}
