@@ -1,0 +1,17 @@
+h1{
+    color:blue;
+    font-family:cursive;
+}
+a:visited{
+    color: rgb(155, 255, 255);
+
+}
+a:hover{
+ color:rgb(19, 255, 19)
+}
+a:active{
+    color:rgb(255, 118, 118);
+}
+div.description{
+    background-color:rgba(176, 35, 35,0.75);
+}
