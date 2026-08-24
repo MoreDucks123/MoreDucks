@@ -1,0 +1,52 @@
+h1{
+    color:blue;
+    font-family:cursive;
+}
+p{
+    font-family: cursive;
+}
+p.small-description{
+    font-size: 10px;
+}
+a {
+   text-decoration: none;
+}
+a:visited{
+    color: rgb(155, 255, 255);
+
+}
+a:hover{
+ color:rgb(19, 255, 19)
+}
+a:active{
+    color:rgb(255, 118, 118);
+}
+div.description{
+    background-color:rgba(176, 35, 35,0.75);
+    border-radius: 20px;
+    border-style: dotted;
+    border-color: rgba(255, 145, 145, 0.5);
+    border-width: 5px;
+    padding: 5px;
+    font-family: cursive;
+}
+hr{
+    border: none;
+    border-top: 5px solid rgba(0, 0, 0, 0.5);
+}
+ul.custom-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul.custom-list li::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-image: url('fruit-forager-apple.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 8px;
+  vertical-align: middle;
+}
