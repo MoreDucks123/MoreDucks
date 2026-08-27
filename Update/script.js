@@ -1,8 +1,8 @@
 setInterval(showtime,1000);
 
 function showtime() {
-    constdate = new Date();
-    myDisplayer(date.LocaleTimeString());
+    const date = new Date();
+    myDisplayer(date.toLocaleTimeString());
 }
 
 function myDisplayer(text) {
