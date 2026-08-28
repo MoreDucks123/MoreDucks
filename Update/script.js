@@ -1,11 +1,18 @@
-setInterval(showtime,1000);
+function showDateTime() {
+    const now = new Date();
 
-function showtime() {
-    const date = new Date();
-    myDisplayer(date.toLocaleTimeString());
+    const date = now.toLocaleDateString([], {
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+    });
+
+    const time = now.toLocaleTimeString();
+
+    document.getElementById("date").textContent = date;
+    document.getElementById("clock").textContent = time;
 }
 
-function myDisplayer(text) {
-    let timer = document.getElementById("timer");
-    timer.innerHTML = text;
-}
+setInterval(showDateTime, 1000);
+
+showDateTime();

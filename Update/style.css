@@ -4,6 +4,16 @@ th, td{
     padding: 5px;
     margin: 5px;
 }
+a{
+    text-decoration: none;
+    font-family: cursive;
+}
+h2{
+    scroll-margin-top: 90px;
+}
+html{
+    scroll-behavior: smooth;
+}
 .header {    
     position: fixed;
     top: 0;
@@ -25,4 +35,22 @@ th, td{
 }
 body{
     padding-top: 70px;
+}
+.header nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 20px;
+    gap: 20px;
+}
+.header nav div{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+    background-color: rgb(192, 249, 252);
+}
+.header nav div a{
+    font-family: cursive;
 }

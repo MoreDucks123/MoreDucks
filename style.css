@@ -6,6 +6,10 @@ body{
 background-color: aliceblue;
 padding-top: 70px;
 }
+a{
+    text-decoration: none;
+    font-family: cursive;
+}
 a:visited{
     color: rgb(155, 255, 255);
 } 
@@ -32,4 +36,22 @@ a:active{
     border-bottom: 2px;
     border-color:black;
     border-style: dashed;
+}
+.header nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 20px;
+    gap: 20px;
+}
+.header nav div{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 10px;
+    background-color: rgb(192, 249, 252);
+}
+.header nav div a{
+    font-family: cursive;
 }
