@@ -1,5 +1,5 @@
 const pages = [
-    "/",
+   "/",
     "/Update/",
     "/Fruit-Forager/",
     "/Credits/",
@@ -10,67 +10,96 @@ const pages = [
 ];
 
 const searchBox = document.getElementById("search");
+const searchButton = document.getElementById("searchButton");
 const results = document.getElementById("results");
 const searchInfo = document.getElementById("searchInfo");
 
 let pageData = [];
 
+// Load the pages
 async function loadPages() {
     for (const url of pages) {
         try {
             const response = await fetch(url);
+
+            if (!response.ok) {
+                console.log("Could not load:", url);
+                continue;
+            }
+
             const html = await response.text();
 
-            const doc = new DOMParser().parseFromString(
+            const page = new DOMParser().parseFromString(
                 html,
                 "text/html"
             );
 
+            // Remove things we don't want to search
+            page.querySelectorAll(
+                "script, style, noscript, iframe, template"
+            ).forEach(element => {
+                element.remove();
+            });
+
+            // Search only the main content
+            const main = page.querySelector("main");
+
+            const text = main
+                ? main.innerText.replace(/\s+/g, " ").trim()
+                : page.body.innerText.replace(/\s+/g, " ").trim();
+
             pageData.push({
-                title: doc.title || url,
+                title: page.title || "Untitled Page",
                 url: url,
-                text: doc.body.innerText
-                    .replace(/\s+/g, " ")
-                    .trim()
+                text: text
             });
 
         } catch (error) {
-            console.log("Could not load:", url);
+            console.log("Error loading:", url, error);
         }
     }
 }
 
+// Escape special characters for RegExp
+function escapeRegExp(text) {
+    return text.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+// Highlight matching words
 function highlight(text, query) {
     const words = query
         .split(/\s+/)
         .filter(word => word.length > 0);
 
-    let result = text;
+    let highlighted = text;
 
     words.forEach(word => {
-        const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+        const escapedWord = escapeRegExp(word);
 
-        result = result.replace(
-            new RegExp(`(${escaped})`, "gi"),
+        highlighted = highlighted.replace(
+            new RegExp(`(${escapedWord})`, "gi"),
             "<mark>$1</mark>"
         );
     });
 
-    return result;
+    return highlighted;
 }
 
+// Get a short section of text around the match
 function getSnippet(text, query) {
     const lowerText = text.toLowerCase();
     const lowerQuery = query.toLowerCase();
 
     const position = lowerText.indexOf(lowerQuery);
 
+    // If the exact search isn't found,
+    // show the beginning of the page
     if (position === -1) {
-        return text.substring(0, 160) + "...";
+        return text.substring(0, 180) + "...";
     }
 
-    const start = Math.max(0, position - 70);
-    const end = Math.min(text.length, position + 120);
+    const start = Math.max(0, position - 80);
+    const end = Math.min(text.length, position + 180);
 
     let snippet = text.substring(start, end);
 
@@ -85,54 +114,62 @@ function getSnippet(text, query) {
     return snippet;
 }
 
+// Calculate how relevant a page is
+function getScore(page, query) {
+    const words = query.toLowerCase().split(/\s+/);
+
+    const title = page.title.toLowerCase();
+    const text = page.text.toLowerCase();
+
+    let score = 0;
+
+    words.forEach(word => {
+
+        // Title matches are worth more
+        if (title.includes(word)) {
+            score += 20;
+        }
+
+        // Text matches
+        if (text.includes(word)) {
+            score += 5;
+        }
+
+        // Count how many times the word appears
+        const occurrences = text.split(word).length - 1;
+
+        score += occurrences;
+    });
+
+    return score;
+}
+
+// Perform the search
 function searchWebsite() {
     const query = searchBox.value.trim();
 
     results.innerHTML = "";
     searchInfo.textContent = "";
 
-    if (!query) {
+    if (query === "") {
         return;
     }
 
-    const words = query.toLowerCase().split(/\s+/);
-
+    // Score every page
     const matches = pageData
-        .map(page => {
-
-            const text = page.text.toLowerCase();
-            const title = page.title.toLowerCase();
-
-            let score = 0;
-
-            words.forEach(word => {
-                if (title.includes(word)) {
-                    score += 10;
-                }
-
-                if (text.includes(word)) {
-                    score += 5;
-                }
-
-                const occurrences =
-                    text.split(word).length - 1;
-
-                score += occurrences;
-            });
-
-            return {
-                ...page,
-                score
-            };
-
-        })
+        .map(page => ({
+            ...page,
+            score: getScore(page, query)
+        }))
         .filter(page => page.score > 0)
         .sort((a, b) => b.score - a.score);
 
+    // Display number of results
     searchInfo.textContent =
         matches.length +
         (matches.length === 1 ? " result" : " results");
 
+    // No results
     if (matches.length === 0) {
         results.innerHTML = `
             <p>No results found for "<strong>${query}</strong>".</p>
@@ -140,9 +177,11 @@ function searchWebsite() {
         return;
     }
 
+    // Display results
     matches.forEach(page => {
 
         const result = document.createElement("div");
+
         result.className = "search-result";
 
         const title = highlight(page.title, query);
@@ -170,6 +209,15 @@ function searchWebsite() {
     });
 }
 
-searchBox.addEventListener("input", searchWebsite);
+// Search button
+searchButton.addEventListener("click", searchWebsite);
 
+// Press Enter to search
+searchBox.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        searchWebsite();
+    }
+});
+
+// Load pages when the website starts
 loadPages();
