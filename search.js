@@ -6,6 +6,10 @@ const pages = [
     "/something/",
     "/Search/",
     "/Fruit-Forager/Fruits/",
+    "/Villagism/",
+    "/Villagism/Food/",
+    "/Others",
+    "/Fruit-Forager/Fruits/"
 
 ];
 

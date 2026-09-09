@@ -1,6 +1,15 @@
-a {
-    font-family: cursive;
+a{
     text-decoration: none;
+    font-family: cursive;
+}
+a:visited{
+    color: rgb(32, 249, 249);
+} 
+a:hover{
+    color:rgb(19, 255, 19)
+}
+a:active{
+    color:rgb(255, 118, 118);
 }
 p{
     font-family: cursive;
