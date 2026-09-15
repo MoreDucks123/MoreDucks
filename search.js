@@ -8,8 +8,11 @@ const pages = [
     "/Fruit-Forager/Fruits/",
     "/Villagism/",
     "/Villagism/Food/",
+    "/Villagism/Roles/",
+    "/Villagism/Roles/Knight/",
     "/Others",
-    "/Fruit-Forager/Fruits/"
+    "/Fruit-Forager/Fruits/",
+    "/Fruit-Forager/Tickets/",
 
 ];
 

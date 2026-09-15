@@ -4,6 +4,8 @@ h1{
 }
 body{
     padding-top: 70px;
+      font-family: cursive;
+    background-color: rgba(203, 255, 190, 0.8);
 }
 p{
     font-family: cursive;
@@ -104,6 +106,7 @@ ul.custom-list li::before {
     );
 
     transition: opacity 0.1s ease;
+    margin: 5px;
 }
 #thumbnail {
     padding-top: 100px;
@@ -115,6 +118,7 @@ ul.custom-list li::before {
     opacity: 0.5;
     pointer-events: none;
     z-index: -2;
+   
 
    
 

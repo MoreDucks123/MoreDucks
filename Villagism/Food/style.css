@@ -43,6 +43,7 @@ th, td{
 }
 body{
     padding-top: 70px;
+    font-family: times-new-roman;
 }
 .header nav{
     display: flex;
@@ -82,6 +83,7 @@ table th{
     width: 100%;
     height: 100%;
     position: relative;
+    justify-content: center;
 }
 
 .carousel-image {
@@ -94,10 +96,12 @@ position: absolute;
 
     opacity: 0;
     transition: opacity 0.6s ease;
+    justify-content: center;
 }
 
 .carousel-image.active {
     opacity: 1;
+    justify-content: center;
     
 }
 
@@ -154,12 +158,4 @@ position: absolute;
 .dot.active {
     background: blue;
 }
-div.description{
-    background-color:rgba(176, 35, 35,0.75);
-    border-radius: 20px;
-    border-style: dotted;
-    border-color: rgba(255, 145, 145, 0.5);
-    border-width: 5px;
-    padding: 5px;
-    font-family: cursive;
-}
+

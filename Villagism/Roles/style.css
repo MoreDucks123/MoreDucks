@@ -7,9 +7,6 @@ background-color: aliceblue;
 padding-top: 70px;
 font-family: cursive;
 }
-p{
-    font-family: cursive;
-}
 a{
     text-decoration: none;
     font-family: cursive;
@@ -59,25 +56,14 @@ a:active{
 .header nav div a{
     font-family: cursive;
 }
-#search {
-    width: 300px;
+#role_box_knight{
+    border: 2px solid black;
+    border-radius: 5px;
+    margin: 5px;
     padding: 10px;
-    border: 2px solid black;
-    border-radius: 5px;
-    font-family: cursive;
-}
-#searchButton {
-    padding: 10px 20px;
-    border: 2px solid black;
-    border-radius: 5px;
-    background-color: rgb(192, 249, 252);
-    cursor: pointer;
-    font-family: cursive;
-}
-#searchFocus {
-    outline: none;
-    border-color: rgb(19, 255, 19);
-}
-#searchButton:hover {
-    opacity: 0.8;
+    background-color: rgb(179, 179, 179);
+    width: 300px;
+    height: 300px;
+    justify-content: bottom;
+    align-items: bottom;
 }

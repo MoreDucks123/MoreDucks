@@ -1,15 +1,6 @@
-a{
-    text-decoration: none;
+a {
     font-family: cursive;
-}
-a:visited{
-    color: rgb(32, 249, 249);
-} 
-a:hover{
-    color:rgb(19, 255, 19)
-}
-a:active{
-    color:rgb(255, 118, 118);
+    text-decoration: none;
 }
 p{
     font-family: cursive;
@@ -60,4 +51,10 @@ body{
 }
 .header nav div a{
     font-family: cursive;
+}
+table tr th{
+    background-color: rgb(253, 255, 186);
+}
+table tr td{
+    background-color: rgb(227, 255, 253);
 }
